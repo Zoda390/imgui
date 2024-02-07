@@ -1,9 +1,10 @@
 project "ImGui"
 	kind "StaticLib"
 	language "C++"
-    staticruntime "off"
+	cppdialect "C++20"
+	staticruntime "on"
 
-    local outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+	local outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -25,12 +26,10 @@ project "ImGui"
 
 	filter "system:windows"
 		systemversion "latest"
-		cppdialect "C++20"
 
 	filter "system:linux"
-		pic "On"
+		pic "on"
 		systemversion "latest"
-		cppdialect "C++20"
 
 	filter "configurations:Debug"
 		runtime "Debug"
@@ -40,7 +39,7 @@ project "ImGui"
 		runtime "Release"
 		optimize "on"
 
-    filter "configurations:Dist"
+	filter "configurations:Dist"
 		runtime "Release"
 		optimize "on"
-        symbols "off"
+		symbols "off"
